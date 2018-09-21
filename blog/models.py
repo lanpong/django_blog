@@ -36,10 +36,10 @@ class Post(models.Model):
     # 字段记录阅读量
     views = models.PositiveIntegerField(default=0)
     # 分类和标签
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     tag = models.ManyToManyField(Tag)
 
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
