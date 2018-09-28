@@ -117,7 +117,7 @@ class PostDetailView(DeleteView):
         return response
 
     def get_object(self, queryset=None):
-        post = super(PostDetailView, self).get(queryset=None)
+        post = super(PostDetailView, self).get_object(queryset=None)
         md = markdown.Markdown(extensions=[
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
