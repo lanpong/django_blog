@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends '__base__.html' %}
 
 {% block main %}
     {% if error_msg %}
@@ -6,22 +6,16 @@
     {% endif %}
 
     {% for post in post_list %}
-        <article class="post post-{{ post.pk }}">
-            <header class="entry-header">
-                <h1 class="entry-title">
-                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-                </h1>
-                <div class="entry-meta">
-                    <span class="post-category">
-                        <a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a></span>
-                    <span class="post-date"><a href="#"><time class="entry-date"
-                                                              datetime="{{ post.created_time }}">{{ post.created_time }}</time></a></span>
-                    <span class="post-author"><a href="#">{{ post.author }}</a></span>
-                    <span class="comments-link">
-                        <a href="{{ post.get_absolute_url }}#comment-area">{{ post.comment_set.count }} 评论</a></span>
-                    <span class="views-count"><a href="{{ post.get_absolute_url }}">{{ post.views }} 阅读</a></span>
-                </div>
-            </header>
+        <article class="blog-post post-{{ post.pk }}">
+            <h2 class="blog-post-title">
+                 <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            </h2>
+            <div class="blog-post-meta">
+                <span class="blog-post-meta">{{ post.created_time }} by </span>
+                <span class="blog-post-meta">{{ post.author }}</span>
+                <span class="blog-post-meta">{{ post.comment_set.count }} 评论</span>
+                <span class="blog-post-meta">{{ post.views }} 阅读</span>
+            </div>
             <div class="entry-content clearfix">
                 <p>{{ post.excerpt }}...</p>
                 <div class="read-more cl-effect-14">
