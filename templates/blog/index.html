@@ -1,6 +1,7 @@
 {% extends '__base__.html' %}
 
 {% block main %}
+    <div class="blog-post">
     {% if error_msg %}
         <p>{{ error_msg }}</p>
     {% endif %}
@@ -19,16 +20,16 @@
             <div class="entry-content clearfix">
                 <p>{{ post.excerpt }}...</p>
                 <div class="read-more cl-effect-14">
-                    <a href="{{ post.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+                    <a href="{{ post.get_absolute_url }}" class="more-link">read more <span class="meta-nav">→</span></a>
                 </div>
             </div>
         </article>
     {% empty %}
-        <div class="no-post">暂时还没有发布的文章！</div>
+        <div class="blog-post">暂时还没有发布的文章！</div>
     {% endfor %}
+    </div><!-- /.blog-post -->
 
-    {% comment %}
-    简单分页导航：
+
     {% if is_paginated %}
         <div class="pagination-simple">
             <!-- 如果当前页还有上一页，显示一个上一页的按钮 -->
@@ -43,11 +44,17 @@
             {% endif %}
         </div>
     {% endif %}
-    {% endcomment %}
+    
+    <nav>
+        <ul class="pager">
+          <li><a href="#">Previous</a></li>
+          <li><a href="#">Next</a></li>
+        </ul>
+      </nav>
 
     {% comment %}
     完善的分页导航
-    {% endcomment %}
+    
     {% if is_paginated %}
         <div class="pagination">
             <ul>
@@ -77,4 +84,5 @@
             </ul>
         </div>
     {% endif %}
+    {% endcomment %}
 {% endblock main %}
